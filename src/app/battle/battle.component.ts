@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from '../pokemon/pokemon';
 
 @Component({
   selector: 'app-battle',
@@ -6,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./battle.component.scss']
 })
 export class BattleComponent implements OnInit {
-  pokemon1Name: string;
-  pokemon2Name: string;
+  pokemon1: Pokemon = {
+    name: 'Pikatchu',
+    life: 3,
+    speed: 5
+  };
 
-  constructor() { }
+  pokemon2: Pokemon = {
+    name: 'Bulbizarre',
+    life: 3,
+    speed: 4
+  };
 
-  ngOnInit(): void {
-    this.pokemon1Name = 'Pikatchu';
-    this.pokemon2Name = 'Bulbizarre';
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 }

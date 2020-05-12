@@ -2,19 +2,15 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12">
-        <app-pokemon
-          [name]="pokemon1Name"
-          [life]="7"
-          [speed]="5"
-        ></app-pokemon>
+        <app-pokemon [pokemon]="pokemon1"></app-pokemon>
       </div>
 
       <div class="col-md-6 col-sm-12">
-        <app-pokemon
-          [name]="pokemon2Name"
-          [life]="7"
-          [speed]="5"
-        ></app-pokemon>
+        <app-pokemon [pokemon]="pokemon2"></app-pokemon>
+      </div>
+
+      <div class="col-12 text-center">
+        <button type="button" class="btn btn-primary">Commencer le combat</button>
       </div>
     </div>
   </div>
