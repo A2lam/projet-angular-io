@@ -9,9 +9,14 @@ import {attack, fight, Pokemon} from './pokemon';
 export class CombatComponent implements OnInit {
   pokemon1 = new Pokemon('ratata', 100, 100, 10);
   pokemon2 = new Pokemon('mew', 300, 500, 95);
+  dialogue: string;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  handleClick() {
+    fight(this.pokemon1, this.pokemon2, this.dialogue);
+  }
 }

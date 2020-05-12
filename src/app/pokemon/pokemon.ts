@@ -50,7 +50,7 @@ export function attack(a: Pokemon, b: Pokemon) {
   return b.life;
 }
 
-export function fight(a: Pokemon, b: Pokemon, dialogue: string) {
+export function fight(a: Pokemon, b: Pokemon) {
   let premierTour = true;
   // tslint:disable-next-line:prefer-const
   let premierPokemon;
@@ -58,7 +58,7 @@ export function fight(a: Pokemon, b: Pokemon, dialogue: string) {
   let secondPokemon;
 
   if (premierTour) {
-    dialogue = 'Le combat commence !';
+    console.log('Le combat commence !');
     premierTour = false;
     if (compareSpeed(a, b) === a.nom) {
       // tslint:disable-next-line:no-shadowed-variable
@@ -69,7 +69,7 @@ export function fight(a: Pokemon, b: Pokemon, dialogue: string) {
       // tslint:disable-next-line:no-shadowed-variable
       premierPokemon = b;
       // tslint:disable-next-line:no-shadowed-variable
-      secondPokemon = a;
+      const secondPokemon: Pokemon = a;
     }
   }
 
