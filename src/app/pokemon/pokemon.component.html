@@ -1,11 +1,19 @@
 <div id="app-pokemon">
   <div class="container">
     <div class="row">
-      <div class="col-12 sub-content">
-        <i class="fas fa-dot-circle"></i> {{ name }}
+      <div class="col-12 text-center pokemon-icon">
+        <i class="fas fa-dot-circle"></i>
       </div>
-      <div class="col-12 sub-content">
-        <p><span class="title">Niveau de vie:</span> {{ life }}, <span class="title">Rapidité:</span> {{ speed }}</p>
+
+      <div class="col-12 text-center pokemon-name">
+        {{ name }}
+      </div>
+
+      <div class="col-12 text-center">
+        <p>
+          <span class="pokemon-attr-title">Niveau de vie:</span> {{ life }},
+          <span class="pokemon-attr-title">Rapidité:</span> {{ speed }}
+        </p>
       </div>
     </div>
   </div>

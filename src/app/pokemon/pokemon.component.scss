@@ -1,11 +1,15 @@
 #app-pokemon {
-  height: 100%;
+  padding: 2.5%;
 }
 
-.sub-content {
-  text-align: center;
-}
+.pokemon {
+  &-icon {
+    font-size: 30px;
+  }
 
-.title {
-  font-weight: bold;
+  &-name {}
+
+  &-attr-title {
+    font-weight: bold;
+  }
 }
