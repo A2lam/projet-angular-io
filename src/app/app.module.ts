@@ -5,14 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { BattleComponent } from './battle/battle.component';
-import { ColorDirective } from './pokemon/pokemon.component';
+// import { ColorDirective } from './pokemon/pokemon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonComponent,
-    BattleComponent,
-    ColorDirective
+    BattleComponent
+    // ColorDirective
   ],
   imports: [
     BrowserModule,
