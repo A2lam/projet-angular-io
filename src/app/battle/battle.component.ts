@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, ElementRef, Renderer2 } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
 
 @Component({
@@ -10,15 +10,22 @@ export class BattleComponent implements OnInit {
   pokemon1: Pokemon = {
     name: 'Pikatchu',
     life: 3,
-    speed: 5
+    speed: 5,
+    isAlive: true,
+    color: 'd8db2e'
   };
   pokemon2: Pokemon = {
     name: 'Bulbizarre',
     life: 3,
-    speed: 4
+    speed: 4,
+    isAlive: true,
+    color: '1aac6c'
+
   };
   winnerP: Pokemon;
-  message: string;
+  loser: Pokemon;
+  messages: Array<string> = [];
+  messageDefaite: string;
 
   constructor() {}
 
@@ -28,7 +35,8 @@ export class BattleComponent implements OnInit {
     const attackFirst: boolean = p1.speed >= p2.speed;
     const attackingFirst: string = (attackFirst) ? p1.name : p2.name;
 
-    this.message = `${attackingFirst} attaque en premier !<br>`;
+    this.messages.push(`${attackingFirst} attaque en premier !`);
+
     return attackFirst;
   }
 
@@ -44,7 +52,7 @@ export class BattleComponent implements OnInit {
     // while ((p1.life > 0) && (p2.life > 0)) {
     const fightInterval = setInterval(() => {
       // Attack
-      this.message += `${ attacking.name } est en train d'attaquer !<br>`;
+      this.messages.push(`${ attacking.name } est en train d'attaquer !`);
       this.attack(attacking, attacked);
 
       // Changing role
@@ -62,10 +70,26 @@ export class BattleComponent implements OnInit {
 
   returnWinner(): void {
     this.winnerP =  (this.pokemon1.life > 0) ? this.pokemon1 : this.pokemon2;
-    this.message += `${ this.winnerP?.name } a gagné le combat<br>`;
+    this.loser = (this.pokemon1.life <= 0) ? this.pokemon1 : this.pokemon2;
+    this.loser.isAlive = false;
+
+    this.messageDefaite = `${ this.loser?.name } a perdu le combat (le noob)`;
+    this.messages.push(`${ this.winnerP?.name } a gagné le combat`);
   }
 
   startFight(): void {
     this.fight(this.pokemon1, this.pokemon2);
+  }
+}
+
+
+
+@Directive({
+  selector: 'app-'
+})
+export class HighlightDirective {
+  constructor(element: ElementRef, renderer: Renderer2) {
+    //element.nativeElement.style.backgroundColor = 'yellow';
+    renderer.setElementStyle(element.nativeElement, 'backgroundColor', 'yellow');
   }
 }

@@ -9,6 +9,7 @@ import { Pokemon } from './pokemon';
 export class PokemonComponent implements OnInit {
   @Input() pokemon: Pokemon;
 
+
   constructor() { }
 
   ngOnInit(): void {
