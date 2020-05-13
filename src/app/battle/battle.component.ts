@@ -84,12 +84,4 @@ export class BattleComponent implements OnInit {
 
 
 
-@Directive({
-  selector: 'app-'
-})
-export class HighlightDirective {
-  constructor(element: ElementRef, renderer: Renderer2) {
-    //element.nativeElement.style.backgroundColor = 'yellow';
-    renderer.setElementStyle(element.nativeElement, 'backgroundColor', 'yellow');
-  }
-}
+
