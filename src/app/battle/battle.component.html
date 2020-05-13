@@ -7,8 +7,9 @@
         </div>
         <div class="alert alert-info" *ngIf="messages">
           <p *ngFor="let message of messages">
-            {{ message }} <span *ngIf="turnDammage > 0">Degats : {{ turnDammage }} pdv </span>
+            {{ message }}
           </p>
+          <p><span *ngIf="turnDammage > 0">Degats : {{ turnDammage | number:'2.2-3'}} pdv </span></p>
         </div>
         <div class="alert alert-danger" *ngIf="messageDefaite">
           <p>{{ messageDefaite }}</p>
