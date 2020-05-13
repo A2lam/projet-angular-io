@@ -11,10 +11,10 @@
       </div>
 
       <div class="col-12 text-center">
-        <p>
-          <span class="pokemon-attr-title">Niveau de vie:</span> {{ pokemon?.life }},
-          <span class="pokemon-attr-title">Rapidité:</span> {{ pokemon?.speed }}
-        </p>
+        <p *ngIf="pokemon?.life > 0"><span class="pokemon-attr-title">Niveau de vie:</span> {{ pokemon?.life }}</p>
+        <p *ngIf="pokemon?.life <= 0"><span class="pokemon-attr-title">Niveau de vie:</span> 0 </p>
+        <p><span class="pokemon-attr-title">Rapidité:</span> {{ pokemon?.speed }}</p>
+        <p><span class="pokemon-attr-title">Puissance:</span> {{ pokemon?.attackValue }}</p>
       </div>
     </div>
   </div>

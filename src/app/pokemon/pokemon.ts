@@ -4,4 +4,5 @@ export interface Pokemon {
   speed?: number;
   isAlive?: boolean;
   color?: string;
+  attackValue?: number;
 }

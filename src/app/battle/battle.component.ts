@@ -8,30 +8,42 @@ import { BattleService } from './battle.service';
   styleUrls: ['./battle.component.scss']
 })
 export class BattleComponent implements OnInit {
+  dateStart: Date;
+  turnDammage: number;
+  criticalMultiplier: number;
   pokemon1: Pokemon = {
+
     name: 'Pikatchu',
-    life: 3,
+    life: 100,
     speed: 5,
     isAlive: true,
-    color: 'd8db2e'
+    color: 'd8db2e',
+    attackValue: 20
+
   };
   pokemon2: Pokemon = {
+
     name: 'Bulbizarre',
-    life: 3,
+    life: 200,
     speed: 4,
     isAlive: true,
-    color: '1aac6c'
+    color: '1aac6c',
+    attackValue: 17
 
   };
   winner: Pokemon;
   messages: Array<string> = [];
   messageDefaite: string;
 
-  constructor(private battleService: BattleService) {}
+  constructor(private battleService: BattleService) {
+    this.criticalMultiplier = 3;
+    this.turnDammage = 0;
+  }
 
   ngOnInit(): void {}
 
   fight(p1: Pokemon, p2: Pokemon, cb: () => void) {
+    this.dateStart = new Date();
     // Determining who's attacking and whose attacked
     let attacking: Pokemon = this.battleService.attackFirst(p1, p2);
     let attacked: Pokemon = (attacking === p1) ? p2 : p1;
@@ -39,15 +51,22 @@ export class BattleComponent implements OnInit {
 
     const fightInterval = setInterval(() => {
       // Attack
-      this.messages.push(`${ attacking.name } est en train d'attaquer !`);
-      this.battleService.attack(attacked);
+      if (Math.random() >= 0.8) { // COUP CRITIQUE
+        this.messages.push(`${ attacking.name } est en train de faire un coup critique ! (Wow) `);
+        this.battleService.attackCritique(attacking, attacked, this.criticalMultiplier);
+        this.turnDammage = attacking.attackValue * this.criticalMultiplier;
+      } else {
+        this.messages.push(`${ attacking.name } est en train d'attaquer ! `);
+        this.battleService.attack(attacking, attacked);
+        this.turnDammage = attacking.attackValue;
+      }
 
       // Changing role
       const tmpP: Pokemon = attacking;
       attacking = attacked;
       attacked = tmpP;
 
-      if ((p1.life === 0) || (p2.life === 0)) {
+      if ((p1.life <= 0) || (p2.life <= 0)) {
         clearInterval(fightInterval);
         // Returning the winner
         this.winner = this.battleService.determineWinner(p1, p2);

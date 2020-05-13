@@ -12,8 +12,13 @@ export class BattleService {
     return (p1.speed >= p2.speed) ? p1 : p2;
   }
 
-  attack(pokemon: Pokemon): void {
-    pokemon.life -= 1;
+  attack(p1: Pokemon, p2: Pokemon): void {
+    p2.life -= p1.attackValue;
+  }
+
+  attackCritique(p1: Pokemon, p2: Pokemon, criticalMultiplier: number): void {
+      p2.life -= p1.attackValue * criticalMultiplier;
+
   }
 
   determineWinner(p1: Pokemon, p2: Pokemon): Pokemon {
