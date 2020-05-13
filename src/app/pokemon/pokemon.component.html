@@ -1,0 +1,21 @@
+<div id="app-pokemon">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center pokemon-icon">
+        <i class="fas fa-dot-circle"></i>
+        <span *ngIf="!pokemon.isAlive">☠</span>
+      </div>
+
+      <div class="col-12 text-center pokemon-name">
+        {{ pokemon?.name }}
+      </div>
+
+      <div class="col-12 text-center">
+        <p>
+          <span class="pokemon-attr-title">Niveau de vie:</span> {{ pokemon?.life }},
+          <span class="pokemon-attr-title">Rapidité:</span> {{ pokemon?.speed }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
