@@ -18,7 +18,6 @@ export class BattleService {
 
   attackCritique(p1: Pokemon, p2: Pokemon, criticalMultiplier: number): void {
       p2.life -= p1.attackValue * criticalMultiplier;
-
   }
 
   determineWinner(p1: Pokemon, p2: Pokemon): Pokemon {
