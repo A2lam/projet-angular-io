@@ -3,6 +3,6 @@ export interface Pokemon {
   life?: number;
   speed?: number;
   isAlive?: boolean;
-  color?: string;
   attackValue?: number;
+  image?: string;
 }

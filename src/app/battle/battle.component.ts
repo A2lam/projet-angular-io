@@ -1,6 +1,7 @@
-import { Component, OnInit, Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
 import { BattleService } from './battle.service';
+import { PokemonService } from '../pokemon/pokemon.service';
 
 @Component({
   selector: 'app-battle',
@@ -9,38 +10,31 @@ import { BattleService } from './battle.service';
 })
 export class BattleComponent implements OnInit {
   dateStart: Date;
-  turnDammage: number;
+  turnDamage: number;
   criticalMultiplier: number;
-  pokemon1: Pokemon = {
-
-    name: 'Pikatchu',
-    life: 100,
-    speed: 5,
-    isAlive: true,
-    color: 'd8db2e',
-    attackValue: 20
-
-  };
-  pokemon2: Pokemon = {
-
-    name: 'Bulbizarre',
-    life: 200,
-    speed: 4,
-    isAlive: true,
-    color: '1aac6c',
-    attackValue: 17
-
-  };
+  pokemon1: Pokemon;
+  pokemon2: Pokemon;
   winner: Pokemon;
   messages: Array<string> = [];
-  messageDefaite: string;
+  messageDefeat: string;
+  error: string;
 
-  constructor(private battleService: BattleService) {
+  constructor(private battleService: BattleService, private pokemonService: PokemonService) {
     this.criticalMultiplier = 3;
-    this.turnDammage = 0;
+    this.turnDamage = 0;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pokemonService.getPokemon('pidgey').subscribe(
+      (pokemon) => this.pokemon1 = pokemon,
+      () => this.error = 'Erreur lors de la récupération des pokemons !'
+    );
+
+    this.pokemonService.getPokemon('bulbasaur').subscribe(
+      (pokemon) => this.pokemon2 = pokemon,
+      () => this.error = 'Erreur lors de la récupération des pokemons !'
+    );
+  }
 
   fight(p1: Pokemon, p2: Pokemon, cb: () => void) {
     this.dateStart = new Date();
@@ -54,11 +48,11 @@ export class BattleComponent implements OnInit {
       if (Math.random() >= 0.8) { // COUP CRITIQUE
         this.messages.push(`${ attacking.name } est en train de faire un coup critique ! (Wow) `);
         this.battleService.attackCritique(attacking, attacked, this.criticalMultiplier);
-        this.turnDammage = attacking.attackValue * this.criticalMultiplier;
+        this.turnDamage = attacking.attackValue * this.criticalMultiplier;
       } else {
         this.messages.push(`${ attacking.name } est en train d'attaquer ! `);
         this.battleService.attack(attacking, attacked);
-        this.turnDammage = attacking.attackValue;
+        this.turnDamage = attacking.attackValue;
       }
 
       // Changing role
@@ -80,7 +74,7 @@ export class BattleComponent implements OnInit {
       const looser = (this.winner === this.pokemon1) ? this.pokemon2 : this.pokemon1;
       looser.isAlive = false;
 
-      this.messageDefaite = `${ looser.name } a perdu le combat (le noob)`;
+      this.messageDefeat = `${ looser.name } a perdu le combat (le noob)`;
       this.messages.push(`${ this.winner.name } a gagné le combat`);
     });
   }

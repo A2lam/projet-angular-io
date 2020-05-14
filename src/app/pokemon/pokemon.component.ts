@@ -9,22 +9,8 @@ import { Pokemon } from './pokemon';
 export class PokemonComponent implements OnInit {
   @Input() pokemon: Pokemon;
 
-
-  // tslint:disable-next-line:variable-name
   constructor() { }
 
   ngOnInit(): void {
   }
 }
-
-/*@Directive({
-  selector: '[appColorDirective]'
-})
-export class ColorDirective {
-  // tslint:disable-next-line:variable-name
-  private _renderer: Renderer2;
-  constructor(element: ElementRef, _renderer: Renderer2) {
-    // element.nativeElement.style.backgroundColor = 'yellow';
-    this._renderer.setElementStyle(element.nativeElement, 'backgroundColor', 'yellow');
-  }
-}*/
