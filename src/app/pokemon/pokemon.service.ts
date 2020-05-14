@@ -18,7 +18,7 @@ export class PokemonService {
   getPokemon(name: string): Observable<Pokemon> {
     return this.http
       .get(`${ this.apiEndPoint }/pokemon/${ name }`)
-      .pipe(map(({ name, base_experience, height, weight, sprites }) => {
+      .pipe(map(({ name, base_experience, height, weight, sprites }: any) => {
         return {
           name,
           life: 300,
