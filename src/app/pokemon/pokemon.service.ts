@@ -15,6 +15,10 @@ export class PokemonService {
     this.apiEndPoint = environment.apiEndPoint;
   }
 
+  getPokemons() {
+    return this.http.get(`${ this.apiEndPoint }/pokemon`);
+  }
+
   getPokemon(name: string): Observable<Pokemon> {
     return this.http
       .get(`${ this.apiEndPoint }/pokemon/${ name }`)

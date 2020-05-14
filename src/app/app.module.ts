@@ -4,16 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonComponent } from './pokemon/pokemon.component';
+import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { BattleComponent } from './battle/battle.component';
-// import { ColorDirective } from './pokemon/pokemon.component';
+import { PokemonComponent } from './pokemon/pokemon-details/pokemon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonComponent,
-    BattleComponent
-    // ColorDirective
+    PokemonListComponent,
+    BattleComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
