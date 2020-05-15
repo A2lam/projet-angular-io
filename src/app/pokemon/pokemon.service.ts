@@ -33,7 +33,7 @@ export class PokemonService {
           life: 300,
           speed: base_experience,
           isAlive: true,
-          attackValue: height + weight,
+          attackValue: (height + weight)%150 + 1,
           image: sprites.back_default
         };
       }))
