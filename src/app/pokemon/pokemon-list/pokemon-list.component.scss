@@ -7,18 +7,32 @@
     margin: 50px auto;
   }
 
-  &-chosen {
+  &-chosen-name {
     font-weight: bold;
     text-transform: capitalize;
   }
 
-  &-content {
+  &-content-pokemon-1 {
     padding: 30px;
   }
 
-  &-content:hover {
-    padding: 15px;
+  &-content-pokemon-1:hover {
+    padding: 20px;
     border: 2px solid #1f30ff;
     border-radius: 5px;
+  }
+
+  &-content-pokemon-2 {
+    padding: 30px;
+  }
+
+  &-content-pokemon-2:hover {
+    padding: 20px;
+    border: 2px solid #ff0008;
+    border-radius: 5px;
+  }
+
+  &-btn {
+    margin: 20px auto 50px auto;
   }
 }

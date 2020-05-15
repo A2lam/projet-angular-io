@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Pokemon } from './pokemon';
 
@@ -15,8 +15,13 @@ export class PokemonService {
     this.apiEndPoint = environment.apiEndPoint;
   }
 
-  getPokemons() {
-    return this.http.get(`${ this.apiEndPoint }/pokemon`);
+  getPokemons(): Observable<Array<object>> {
+    return this.http
+      .get(`${ this.apiEndPoint }/pokemon`)
+      .pipe(map(({ results }: Array<object>) => {
+        return results;
+      }))
+    ;
   }
 
   getPokemon(name: string): Observable<Pokemon> {
@@ -31,6 +36,7 @@ export class PokemonService {
           attackValue: height + weight,
           image: sprites.back_default
         };
-      }));
+      }))
+    ;
   }
 }

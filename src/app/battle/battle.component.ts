@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BattleService } from './battle.service';
 import { PokemonService } from '../pokemon/pokemon.service';
 
@@ -12,6 +13,8 @@ export class BattleComponent implements OnInit {
   dateStart: Date;
   turnDamage: number;
   criticalMultiplier: number;
+  nomPok1: string;
+  nomPok2: string;
   pokemon1: Pokemon;
   pokemon2: Pokemon;
   winner: Pokemon;
@@ -19,18 +22,26 @@ export class BattleComponent implements OnInit {
   messageDefeat: string;
   error: string;
 
-  constructor(private battleService: BattleService, private pokemonService: PokemonService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private battleService: BattleService,
+    private pokemonService: PokemonService
+  ) {
     this.criticalMultiplier = 3;
     this.turnDamage = 0;
   }
 
   ngOnInit(): void {
-    this.pokemonService.getPokemon('pidgey').subscribe(
+    this.nomPok1 = this.route.snapshot.params.nomPok1;
+    this.nomPok2 = this.route.snapshot.params.nomPok2;
+
+    this.pokemonService.getPokemon(this.nomPok1).subscribe(
       (pokemon) => this.pokemon1 = pokemon,
       () => this.error = 'Erreur lors de la récupération des pokemons !'
     );
 
-    this.pokemonService.getPokemon('bulbasaur').subscribe(
+    this.pokemonService.getPokemon(this.nomPok2).subscribe(
       (pokemon) => this.pokemon2 = pokemon,
       () => this.error = 'Erreur lors de la récupération des pokemons !'
     );
