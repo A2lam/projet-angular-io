@@ -31,7 +31,7 @@
       </div>
 
       <div class="formulaireChange" *ngIf="expended == true">
-        <form method="post" (ngSubmit)="onSubmit" [formGroup]="updatePokemonForm">
+        <form method="post" (ngSubmit)="onSubmit()" [formGroup]="updatePokemonForm">
           <div class="form-group">
             <label>Rapidité</label>
             <input class="form-control" name="speed" formControlName="speed" [value]="pokemon?.speed">

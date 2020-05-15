@@ -32,7 +32,6 @@ export class PokemonComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(parseInt(this.updatePokemonForm.get('speed').value, 10));
     this.pokemon.speed = parseInt(this.updatePokemonForm.get('speed').value, 10);
     this.pokemon.attackValue = parseInt(this.updatePokemonForm.get('attackValue').value, 10);
   }
