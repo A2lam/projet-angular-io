@@ -39,7 +39,7 @@ export class PokemonListComponent implements OnInit {
 
   getPokemons(): void {
     this.pokemonService.getPokemons().subscribe(
-      (pokemons: Array<object>) => {
+      (pokemons) => {
         pokemons.forEach((pokemon) => {
           this.pokemonService.getPokemon(pokemon.name).subscribe(
             (fetchedPokemon) => this.pokemons.push(fetchedPokemon),

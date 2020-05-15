@@ -1,67 +1,65 @@
 <div id="app-pokemon-list">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <img src="assets/img/pokemon_logo.png" alt="">
-      </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <img src="assets/img/pokemon_logo.png" alt="">
+    </div>
 
-      <div class="col-12 text-center" *ngIf="error">
-        <div class="alert alert-danger">
-          {{ error }}
+    <div class="col-12 text-center" *ngIf="error">
+      <div class="alert alert-danger">
+        {{ error }}
+      </div>
+    </div>
+
+    <div class="col-12 text-center">
+      <h2>Séléctionnez les pokemons pour la battle</h2>
+    </div>
+
+    <div class="col-12 text-center pokemon-fighters">
+      <div class="row">
+        <div class="col-5 text-center" *ngIf="pokemon1">
+          <div class="pokemon-chosen-img">
+            <img src="{{ pokemon1.image }}" alt="">
+          </div>
+          <span class="pokemon-chosen-name">{{ pokemon1.name }}</span>
+        </div>
+
+        <div class="col-2 text-center" *ngIf="pokemon1 || pokemon2">
+          VS
+        </div>
+
+        <div class="col-5 text-center" *ngIf="pokemon2">
+          <div class="pokemon-chosen-img">
+            <img src="{{ pokemon2.image }}" alt="">
+          </div>
+          <span class="pokemon-chosen-name">{{ pokemon2.name }}</span>
         </div>
       </div>
+    </div>
 
-      <div class="col-12 text-center">
-        <h2>Séléctionnez les pokemons pour la battle</h2>
-      </div>
-
-      <div class="col-12 text-center pokemon-fighters">
-        <div class="row">
-          <div class="col-5 text-center" *ngIf="pokemon1">
-            <div class="pokemon-chosen-img">
-              <img src="{{ pokemon1.image }}" alt="">
-            </div>
-            <span class="pokemon-chosen-name">{{ pokemon1.name }}</span>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3 text-center pokemon-content-pokemon-1" *ngFor="let pokemon of pokemons" (click)="selectPokemon1(pokemon)">
+          <div class="pokemon-img">
+            <img src="{{ pokemon.image }}" alt="">
           </div>
-
-          <div class="col-2 text-center" *ngIf="pokemon1 || pokemon2">
-            VS
-          </div>
-
-          <div class="col-5 text-center" *ngIf="pokemon2">
-            <div class="pokemon-chosen-img">
-              <img src="{{ pokemon2.image }}" alt="">
-            </div>
-            <span class="pokemon-chosen-name">{{ pokemon2.name }}</span>
-          </div>
+          <span class="pokemon-name">{{ pokemon.name }}</span>
         </div>
       </div>
+    </div>
 
-      <div class="col-6">
-        <div class="row">
-          <div class="col-3 text-center pokemon-content-pokemon-1" *ngFor="let pokemon of pokemons" (click)="selectPokemon1(pokemon)">
-            <div class="pokemon-img">
-              <img src="{{ pokemon.image }}" alt="">
-            </div>
-            <span class="pokemon-name">{{ pokemon.name }}</span>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3 text-center pokemon-content-pokemon-2" *ngFor="let pokemon of pokemons" (click)="selectPokemon2(pokemon)">
+          <div class="pokemon-img">
+            <img src="{{ pokemon.image }}" alt="">
           </div>
+          <span class="pokemon-name">{{ pokemon.name }}</span>
         </div>
       </div>
+    </div>
 
-      <div class="col-6">
-        <div class="row">
-          <div class="col-3 text-center pokemon-content-pokemon-2" *ngFor="let pokemon of pokemons" (click)="selectPokemon2(pokemon)">
-            <div class="pokemon-img">
-              <img src="{{ pokemon.image }}" alt="">
-            </div>
-            <span class="pokemon-name">{{ pokemon.name }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 text-center pokemon-btn">
-        <button class="btn btn-primary" (click)="startBattle()">Commencer la battle</button>
-      </div>
+    <div class="col-12 text-center pokemon-btn">
+      <button class="btn btn-primary" (click)="startBattle()">Commencer la battle</button>
     </div>
   </div>
 </div>

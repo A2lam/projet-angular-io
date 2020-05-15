@@ -15,11 +15,11 @@ export class PokemonService {
     this.apiEndPoint = environment.apiEndPoint;
   }
 
-  getPokemons(): Observable<Array<object>> {
+  getPokemons(): Observable<any> {
     return this.http
       .get(`${ this.apiEndPoint }/pokemon`)
-      .pipe(map(({ results }: Array<object>) => {
-        return results;
+      .pipe(map((res: any) => {
+        return res.results;
       }))
     ;
   }
