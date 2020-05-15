@@ -5,7 +5,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { Pokemon } from './pokemon';
 
 describe('PokemonService', () => {
-  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -24,9 +23,9 @@ describe('PokemonService', () => {
       attackValue: 77,
       image: null
     };
-    
-    pokemonService.getPokemon('bulbasaur').subscribe((pokemon : Pokemon) => {
+
+    pokemonService.getPokemon('bulbasaur').subscribe((pokemon: Pokemon) => {
       expect(pokemon).toBe(mockedPokemon);
     });
-  }))
+  }));
 });
