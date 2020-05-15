@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { BattleComponent } from './battle/battle.component';
 import { PokemonComponent } from './pokemon/pokemon-details/pokemon.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,11 +16,12 @@ import { PokemonComponent } from './pokemon/pokemon-details/pokemon.component';
     BattleComponent,
     PokemonComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

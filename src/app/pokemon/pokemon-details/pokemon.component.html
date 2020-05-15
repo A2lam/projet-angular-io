@@ -16,6 +16,31 @@
         <p><span class="pokemon-attr-title">Rapidité:</span> {{ pokemon?.speed }}</p>
         <p><span class="pokemon-attr-title">Puissance:</span> {{ pokemon?.attackValue }}</p>
       </div>
+
+      <div class="showBtnToogle">
+        <div *ngIf=" expended == false">
+          <span (click)="expended = true"> <button type="button" class="btn btn-primary">Modifier</button> </span>
+        </div>
+        <div *ngIf=" expended == true">
+          <span (click)="expended = false"> <button type="button" class="btn btn-danger">Annuler</button> </span>
+        </div>
+      </div>
+
+      <div class="formulaireChange" *ngIf="expended == true">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+          <input
+            type="text"
+            [(ngModel)]="pokemon.life"
+            name="life"
+            required
+            #nameInput="ngModel"
+          >
+          <input name="first" ngModel required #first="ngModel">
+          <input name="last" ngModel>
+          <button>Submit</button>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

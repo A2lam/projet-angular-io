@@ -8,9 +8,15 @@ import { Pokemon } from '../pokemon';
 })
 export class PokemonComponent implements OnInit {
   @Input() pokemon: Pokemon;
+  expended : boolean= false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(f: NgForm) {
+    console.log(f.value);  // { first: '', last: '' }
+    console.log(f.valid);  // false
   }
 }
